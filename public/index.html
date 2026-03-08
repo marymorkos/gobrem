@@ -258,7 +258,8 @@ nav{
   background:var(--border);
   border:1px solid var(--border);
   border-radius:12px;
-  overflow:hidden;
+  overflow:visible;
+  position:relative;
 }
 .traveler-display{
   width:100%;height:42px;border:none;outline:none;
@@ -301,7 +302,7 @@ nav{
   font-size:9px;font-weight:600;color:var(--dust);
   letter-spacing:2px;text-transform:uppercase;
 }
-.sf-inner{position:relative;}
+.sf-inner{position:relative;overflow:visible;}
 .sf-inner input,.sf-inner select{
   width:100%;height:42px;border:none;outline:none;
   padding:0 14px 0 32px;font-size:14px;font-weight:400;
@@ -1764,13 +1765,13 @@ input[type="date"]:valid{color:var(--noir);}
             </div>
           </div>
           <div class="sf">
-            <label>Travelers</label>
+            <label>Guests</label>
             <div class="sf-inner" style="position:relative">
               <i class="sf-icon">👯</i>
-              <div class="traveler-display" id="travelerDisplay" onclick="toggleTravelerDrop(event)" style="cursor:pointer">2 travelers</div>
+              <div class="traveler-display" id="travelerDisplay" onclick="toggleTravelerDrop(event)" style="cursor:pointer">2 guests</div>
               <div class="traveler-dropdown" id="travelerDrop">
                 <div class="td-row">
-                  <div><div class="td-label">Women</div><div class="td-sub">All travelers</div></div>
+                  <div><div class="td-label">Guests</div><div class="td-sub">Travelers in your party</div></div>
                   <div class="td-counter">
                     <button class="td-btn" onclick="changeTraveler(-1,event)">−</button>
                     <span class="td-num" id="travelerCount">2</span>
@@ -2610,7 +2611,7 @@ function changeTraveler(delta, e){
   e.stopPropagation();
   travelerCount = Math.max(1, Math.min(12, travelerCount + delta));
   document.getElementById('travelerCount').textContent = travelerCount;
-  document.getElementById('travelerDisplay').textContent = travelerCount + (travelerCount===1?' traveler':' travelers');
+  document.getElementById('travelerDisplay').textContent = travelerCount + (travelerCount===1?' guest':' guests');
 }
 document.addEventListener('click', ()=>{
   document.getElementById('travelerDrop')?.classList.remove('show');
@@ -3075,10 +3076,27 @@ async function downloadGuide(){
   const email = document.getElementById('guideEmail').value;
   const phone = document.getElementById('guidePhone').value || '';
   if(!email||!email.includes('@')){showToast('Enter a valid email');return;}
-  await submitEmail(email + (phone ? ' | ' + phone : ''));
+
   const city = currentGuide;
+
+  // Submit to Formspree
+  await submitEmail(email + (phone ? ' | ' + phone : '') + ' | Guide: ' + city);
+
+  // Send SMS via Twilio if phone provided
+  if(phone){
+    try {
+      await fetch('/.netlify/functions/send-guide', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ phone, email, city })
+      });
+    } catch(e) {
+      console.warn('SMS failed silently:', e);
+    }
+  }
+
   closeGuideModal();
-  showToast('✦ Your ' + city + ' guide is on its way!');
+  showToast('✦ Your ' + city + ' Lookbook is on its way' + (phone ? ' — check your texts!' : '!'));
 }
 
 // ── TOAST ──
