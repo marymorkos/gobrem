@@ -1,90 +1,94 @@
-const https = require('https');
-const querystring = require('querystring');
+// netlify/functions/send-guide.js
+// Sends the BREM Lookbook SMS when a user downloads a guide
+// Requires env vars: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER
 
-const CORS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS'
+const GUIDE_ANCHORS = {
+  'Miami':           'miami',
+  'Nashville':       'nashville',
+  'Cancún & Tulum':  'cancuntulum',
+  'Paris':           'paris',
+  'Bali':            'bali',
+  'Dubai':           'dubai',
+  'Santorini':       'santorini',
+  'Cape Town':       'capetown',
 };
 
-function twilioSMS(to, body) {
-  return new Promise((resolve, reject) => {
-    const sid = process.env.TWILIO_ACCOUNT_SID;
-    const token = process.env.TWILIO_AUTH_TOKEN;
-    const from = process.env.TWILIO_PHONE_NUMBER;
-
-    const data = querystring.stringify({ To: to, From: from, Body: body });
-    const auth = Buffer.from(`${sid}:${token}`).toString('base64');
-
-    const options = {
-      hostname: 'api.twilio.com',
-      path: `/2010-04-01/Accounts/${sid}/Messages.json`,
-      method: 'POST',
-      headers: {
-        'Authorization': `Basic ${auth}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(data)
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let body = '';
-      res.on('data', chunk => body += chunk);
-      res.on('end', () => resolve(JSON.parse(body)));
-    });
-    req.on('error', reject);
-    req.write(data);
-    req.end();
-  });
+function buildMessage(city) {
+  const anchor = GUIDE_ANCHORS[city] || city.toLowerCase().replace(/[^a-z]/g, '');
+  const link = `https://gobrem.com/lookbook#lb-${anchor}`;
+  return `✦ Your ${city} guide has arrived.\n\nCurated stays, experiences & insider tips — selected for the woman who travels well.\n\n${link}\n\nReply STOP to unsubscribe.`;
 }
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers: CORS, body: '' };
-  }
-
+exports.handler = async function(event) {
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers: CORS, body: 'Method not allowed' };
+    return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
   let body;
   try {
     body = JSON.parse(event.body);
-  } catch (e) {
-    return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Invalid JSON' }) };
+  } catch {
+    return { statusCode: 400, body: 'Invalid JSON' };
   }
 
-  const { phone, city, email } = body;
+  const { phone, email, city } = body;
 
-  // Format phone — ensure +1 for US numbers
-  let formattedPhone = phone ? phone.replace(/\D/g, '') : '';
-  if (formattedPhone.length === 10) formattedPhone = '+1' + formattedPhone;
-  else if (formattedPhone.length === 11 && formattedPhone.startsWith('1')) formattedPhone = '+' + formattedPhone;
-  else if (!formattedPhone.startsWith('+')) formattedPhone = '+' + formattedPhone;
+  if (!phone || !city) {
+    return { statusCode: 400, body: 'Missing phone or city' };
+  }
 
-  const cityName = city || 'your destination';
+  // Sanitize phone to E.164 format
+  let to = phone.replace(/\D/g, '');
+  if (to.length === 10) to = '+1' + to;
+  else if (to.length === 11 && to.startsWith('1')) to = '+' + to;
+  else to = '+' + to;
 
-  // SMS message
-  const smsBody = `✦ BREM | Your ${cityName} Lookbook is on its way to ${email || 'your inbox'}!\n\nPlan your perfect trip at gobrem.com\n\nReply STOP to unsubscribe.`;
+  const message = buildMessage(city);
+
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken  = process.env.TWILIO_AUTH_TOKEN;
+  const from       = process.env.TWILIO_PHONE_NUMBER;
+
+  if (!accountSid || !authToken || !from) {
+    console.error('Missing Twilio env vars');
+    return { statusCode: 500, body: 'SMS not configured' };
+  }
+
+  const credentials = Buffer.from(`${accountSid}:${authToken}`).toString('base64');
 
   try {
-    if (phone && formattedPhone.length >= 10) {
-      await twilioSMS(formattedPhone, smsBody);
+    const params = new URLSearchParams();
+    params.append('To', to);
+    params.append('From', from);
+    params.append('Body', message);
+
+    const response = await fetch(
+      `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Basic ${credentials}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params.toString(),
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error('Twilio error:', result);
+      return { statusCode: 500, body: JSON.stringify({ error: result.message }) };
     }
 
+    console.log(`SMS sent to ${to} for ${city} guide. SID: ${result.sid}`);
     return {
       statusCode: 200,
-      headers: CORS,
-      body: JSON.stringify({ success: true, sms: !!phone })
+      body: JSON.stringify({ success: true, sid: result.sid }),
     };
 
   } catch (err) {
-    console.error('Twilio error:', err.message);
-    // Don't fail the whole request if SMS fails
-    return {
-      statusCode: 200,
-      headers: CORS,
-      body: JSON.stringify({ success: true, sms: false, error: err.message })
-    };
+    console.error('Fetch error:', err);
+    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
 };
