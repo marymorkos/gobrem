@@ -11,10 +11,6 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gobrem.com">
 <meta name="description" content="BREM — The travel app built for girls trips, bachelorettes, honeymoons & solo travel. Safety scores, group booking, age-verified stays.">
-<!-- ═══════════════════════════════
-  GOOGLE ANALYTICS — REPLACE G-8G3P31Q6L6 WITH YOUR MEASUREMENT ID
-  Get it at: analytics.google.com → Admin → Data Streams → Web
-  ═══════════════════════════════ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G3P31Q6L6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -272,7 +268,7 @@ nav{
 
 .search-grid{
  display:grid;
- grid-template-columns:1fr 1fr .85fr .85fr .7fr auto;
+ grid-template-columns:1.4fr 1.4fr .9fr .9fr .75fr auto;
  gap:1px;
  background:var(--border);
  border:1px solid var(--border);
@@ -419,6 +415,34 @@ input[type="date"]:valid{color:var(--noir);}
  max-width:1100px;margin:0 auto;
  display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;
 }
+.safety-carousel-wrap{max-width:900px;margin:0 auto;text-align:center;padding:0 20px;}
+.safety-eyebrow{font-size:10px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin-bottom:32px;}
+.safety-carousel{position:relative;overflow:hidden;}
+.sc-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:white;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;z-index:10;transition:background .2s;display:flex;align-items:center;justify-content:center;}
+.sc-arrow:hover{background:rgba(255,255,255,.18);}
+.sc-arrow-left{left:-20px;}
+.sc-arrow-right{right:-20px;}
+.safety-slide{display:none;animation:fadeIn .6s ease;}
+.safety-slide.active{display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start;text-align:left;padding:8px 0;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sc-score-block{text-align:center;}
+.sc-num{font-family:'Cormorant Garamond',serif;font-size:96px;font-weight:300;color:white;line-height:1;}
+.sc-denom{font-size:13px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-bottom:4px;}
+.sc-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);}
+.sc-right{}
+.sc-city{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:white;margin-bottom:4px;}
+.sc-country{font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:16px;}
+.sc-desc{font-size:14px;color:rgba(255,255,255,.7);line-height:1.9;font-weight:300;margin-bottom:24px;max-width:520px;}
+.sc-bars{display:flex;flex-direction:column;gap:8px;}
+.sc-bar-row{display:grid;grid-template-columns:140px 1fr 32px;gap:10px;align-items:center;}
+.sc-bar-name{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.sc-bar-track{height:2px;background:rgba(255,255,255,.1);border-radius:1px;}
+.sc-bar-fill{height:100%;background:var(--gold2);border-radius:1px;transition:width .8s ease;}
+.sc-bar-val{font-size:11px;color:var(--gold2);font-weight:500;text-align:right;}
+.safety-dots{display:flex;justify-content:center;gap:8px;margin-top:32px;}
+.sdot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .3s;}
+.sdot.active{background:var(--gold2);}
+.safety-data-note{font-size:10px;color:rgba(255,255,255,.2);line-height:1.8;margin-top:24px;font-weight:300;}
 .safety-score-display{
  display:flex;flex-direction:column;align-items:center;gap:6px;
 }
@@ -547,7 +571,7 @@ input[type="date"]:valid{color:var(--noir);}
  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);
 }
 .aia-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.aia-key{color:rgba(255,255,255,.35);font-weight:300;}
+.aia-key{color:rgba(255,255,255,.75);font-weight:300;}
 .aia-val{color:rgba(255,255,255,.8);font-weight:400;}
 .aia-val.gold{color:var(--gold2);}
 .aia-val.green{color:#8BC4A0;}
@@ -1559,7 +1583,7 @@ input[type="date"]:valid{color:var(--noir);}
 ══════════════════════ */
 .lookbook-header{
  background:var(--noir);
- padding:80px 56px 72px;
+ padding:80px 56px 56px;
  position:relative;overflow:hidden;
  text-align:center;
 }
@@ -1585,10 +1609,45 @@ input[type="date"]:valid{color:var(--noir);}
  font-size:14px;color:rgba(255,255,255,.38);
  max-width:480px;margin:0 auto;line-height:1.9;font-weight:300;
 }
+.lb-disclaimer{
+ max-width:600px;margin:28px auto 0;
+ border:1px solid rgba(255,255,255,.08);
+ padding:18px 28px;border-radius:4px;
+ text-align:center;
+}
+.lb-disclaimer p{
+ font-size:11px;color:rgba(255,255,255,.55);
+ line-height:1.9;margin:0;font-weight:300;text-align:center;
+}
+.lb-disclaimer strong{
+ font-size:9px;letter-spacing:2px;text-transform:uppercase;
+ color:rgba(255,255,255,.5);font-weight:500;
+}
+.lb-filters{
+ display:flex;justify-content:center;align-items:center;
+ padding:32px 56px 0;
+ background:var(--noir);
+}
+.lb-filters-inner{
+ display:flex;gap:10px;align-items:center;
+ flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+ max-width:100%;
+}
+.lb-filters-inner::-webkit-scrollbar{display:none;}
+.lb-filter-btn{
+ padding:9px 22px;border:1px solid rgba(255,255,255,.15);
+ background:transparent;color:rgba(255,255,255,.45);
+ font-size:10px;letter-spacing:2px;text-transform:uppercase;
+ cursor:pointer;font-family:'Jost',sans-serif;font-weight:400;
+ transition:all .2s ease;border-radius:3px;
+ white-space:nowrap;flex-shrink:0;
+}
+.lb-filter-btn:hover{color:white;border-color:rgba(255,255,255,.35);}
+.lb-filter-btn.active{background:white;color:var(--noir);border-color:white;}
 .lookbook-grid{
  display:grid;
  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
- gap:24px;padding:48px 56px;
+ gap:24px;padding:40px 56px 56px;
  background:var(--ivory2);
 }
 .lookbook-card{
@@ -1643,6 +1702,15 @@ input[type="date"]:valid{color:var(--noir);}
  text-transform:uppercase;transition:all .2s;
 }
 .lc-cta:hover{background:var(--noir3);}
+.lc-gyg-btn{
+ display:block;width:100%;padding:12px;margin-top:8px;
+ background:transparent;color:var(--gold);
+ border:1px solid rgba(184,146,58,.35);border-radius:10px;
+ font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+ text-align:center;text-decoration:none;font-family:'Jost',sans-serif;
+ transition:all .2s;
+}
+.lc-gyg-btn:hover{background:rgba(184,146,58,.08);border-color:var(--gold);color:var(--gold);}
 
 /* Email capture modal for guide download */
 .guide-modal{
@@ -1741,6 +1809,9 @@ input[type="date"]:valid{color:var(--noir);}
  .airport-row,.time-row{grid-template-columns:1fr 1fr;}
  .safety-inner{grid-template-columns:1fr;gap:24px;}
  .dash-card.wide{grid-column:span 1;}
+ .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px 24px!important;}
+ .footer-brand{grid-column:span 2;}
+ footer{padding:40px 24px 32px!important;}
 }
 </style>
 <!-- GetYourGuide Analytics -->
@@ -1758,7 +1829,7 @@ input[type="date"]:valid{color:var(--noir);}
  <li id="nav-home" class="active" onclick="showPage('home')">Home</li>
  <li id="nav-explore" onclick="showPage('explore')">Discover</li>
  <li id="nav-results" onclick="showPage('results');renderResults()">Stays</li>
- <li id="nav-dash" onclick="showPage('dashboard')">Your Atelier</li>
+ 
  <li id="nav-lookbook" onclick="showPage('lookbook')">The Lookbook</li>
  </ul>
  <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Menu">
@@ -1766,7 +1837,7 @@ input[type="date"]:valid{color:var(--noir);}
  </button>
  <div class="nav-right">
  <button class="btn-ghost" onclick="showPage('privacy')">Privacy</button>
- <button class="btn-primary" onclick="showPage('home');setTimeout(()=>document.getElementById('waitlistSection')?.scrollIntoView({behavior:'smooth'}),300)">Request Access</button>
+ <button class="btn-primary" onclick="showPage('home'); setTimeout(renderSafetyCarousel, 100);setTimeout(()=>document.getElementById('waitlistSection')?.scrollIntoView({behavior:'smooth'}),300)">Request Access</button>
  </div>
 </nav>
 
@@ -1779,7 +1850,7 @@ input[type="date"]:valid{color:var(--noir);}
  <li onclick="showPage('explore');toggleMobileNav()">Discover</li>
  <li onclick="showPage('results');renderResults();toggleMobileNav()">Stays</li>
  <li onclick="showPage('lookbook');toggleMobileNav()">The Lookbook</li>
- <li onclick="showPage('dashboard');toggleMobileNav()">Your Atelier</li>
+ 
  <li onclick="showPage('home');toggleMobileNav();setTimeout(()=>document.getElementById('waitlistSection')?.scrollIntoView({behavior:'smooth'}),300)" style="color:var(--gold2)">Request Access ✦</li>
  </ul>
 </div>
@@ -1816,18 +1887,18 @@ input[type="date"]:valid{color:var(--noir);}
  </div>
  <div class="search-grid">
  <div class="sf">
- <label>Departing from</label>
+ <label>Flying from</label>
  <div class="sf-inner" style="position:relative">
  <i class="sf-icon">↑</i>
- <input type="text" id="searchFrom" placeholder="New York, NY" value="New York, NY" autocomplete="off" oninput="showACFrom(this.value)" onblur="setTimeout(()=>hideACFrom(),160)">
+ <input type="text" id="searchFrom" placeholder="City or airport code" value="New York, NY" autocomplete="off" oninput="showACFrom(this.value)" onblur="setTimeout(()=>hideACFrom(),160)">
  <div class="autocomplete-dropdown" id="acDropFrom"></div>
  </div>
  </div>
  <div class="sf">
- <label>Destination</label>
+ <label>Destination or airport</label>
  <div class="sf-inner" style="position:relative">
  <i class="sf-icon">→</i>
- <input type="text" id="searchTo" placeholder="Your destination." autocomplete="off" oninput="showAC(this.value)" onblur="setTimeout(()=>hideAC(),160)">
+ <input type="text" id="searchTo" placeholder="City or airport code" autocomplete="off" oninput="showAC(this.value)" onblur="setTimeout(()=>hideAC(),160)">
  <div class="autocomplete-dropdown" id="acDrop"></div>
  </div>
  </div>
@@ -1898,45 +1969,17 @@ input[type="date"]:valid{color:var(--noir);}
  </div>
  </section>
 
- <!-- SAFETY BANNER -->
+ <!-- SAFETY CAROUSEL -->
  <section class="safety-section" id="safetyBanner">
- <div class="safety-inner">
- <div class="safety-score-display au d1">
- <div class="safety-num" id="safetyNum">84</div>
- <div class="safety-denom">/ 100</div>
- <div class="safety-label-main">Safety Score™</div>
- </div>
- <div class="safety-right au d2">
- <div class="safety-title">Miami is <em>well-suited</em> for a grand tour.</div>
- <div class="safety-desc">BREM's Safety Score™ is built exclusively from women-specific data — not the generic travel safety scores designed for everyone and optimized for no one. We measure what actually matters when you're traveling as a woman.</div>
- <div style="margin-top:10px;padding:12px 16px;background:rgba(255,255,255,.05);border-radius:10px;border-left:2px solid var(--gold2);">
- <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-bottom:6px;">Data Sources</div>
- <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8;font-weight:300;">Georgetown Women, Peace & Security Index · Numbeo Crime Index · US State Dept Advisories · Global Peace Index · Solo Chapter Female Traveler Community Reports</div>
- <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:8px;font-weight:300;">⚠ Scores are updated quarterly. Have better data? <span style="color:var(--gold2);cursor:pointer;text-decoration:underline" onclick="openContributeModal()">Contribute here</span></div>
- </div>
- <div class="safety-bars">
- <div class="sb-row">
- <span class="sb-name">Night Safety</span>
- <div class="sb-track"><div class="sb-fill" style="width:88%"></div></div>
- <span class="sb-val high">88</span>
- </div>
- <div class="sb-row">
- <span class="sb-name">Harassment Index</span>
- <div class="sb-track"><div class="sb-fill" style="width:81%"></div></div>
- <span class="sb-val high">81</span>
- </div>
- <div class="sb-row">
- <span class="sb-name">Solo Chapter Female</span>
- <div class="sb-track"><div class="sb-fill" style="width:79%"></div></div>
- <span class="sb-val">79</span>
- </div>
- <div class="sb-row">
- <span class="sb-name">Legal Rights</span>
- <div class="sb-track"><div class="sb-fill" style="width:92%"></div></div>
- <span class="sb-val high">92</span>
- </div>
- </div>
- </div>
+ <div class="safety-carousel-wrap">
+  <div class="safety-eyebrow">✦ BREM Safety Score™</div>
+  <div style="position:relative;">
+    <button class="sc-arrow sc-arrow-left" onclick="goSafety((safetyIdx-1+safetyCities.length)%safetyCities.length)">&#8592;</button>
+    <div class="safety-carousel" id="safetyCarousel"></div>
+    <button class="sc-arrow sc-arrow-right" onclick="goSafety((safetyIdx+1)%safetyCities.length)">&#8594;</button>
+  </div>
+  <div class="safety-dots" id="safetyDots"></div>
+  <div class="safety-data-note">Built exclusively from women-specific data — Georgetown WPS Index · Numbeo Crime Index · US State Dept Advisories · Global Peace Index · Solo Chapter Female Traveler Reports</div>
  </div>
  </section>
 
@@ -2195,7 +2238,7 @@ input[type="date"]:valid{color:var(--noir);}
  <div class="confirm-row"><span class="cr-key">Guests</span><span class="cr-val">4 women ✓</span></div>
  <div class="confirm-row"><span class="cr-key">Savings</span><span class="cr-val good">$211 saved by Cleo</span></div>
  </div>
- <button class="btn-primary" style="width:100%;padding:16px;border-radius:12px;font-size:12px" onclick="showPage('dashboard')">Open Trip Your Atelier →</button>
+ 
  </div>
  </div>
 </div>
@@ -2487,9 +2530,20 @@ input[type="date"]:valid{color:var(--noir);}
 <!-- ═══════════ THE LOOKBOOK ═══════════ -->
 <div class="page" id="page-lookbook">
  <div class="lookbook-header">
- <span class="lh-eyebrow">✦ BREM Exclusive</span>
- <h2>The <em>Lookbook</em></h2>
- <p>The world's best destinations for grand tours, the farewells, and the escapes — fully planned. Free to download.</p>
+  <span class="lh-eyebrow">✦ BREM Exclusive</span>
+  <h2>The <em>Lookbook</em></h2>
+  <p>The world's best destinations for the farewell, the escape, and the girls trip — curated for the woman who travels well.</p>
+  <div class="lb-disclaimer">
+   <p><strong>A note from BREM &nbsp;·&nbsp;</strong> Our safety tiers are built from government advisories, global indices, and real traveler experiences — but they are a starting point, not a verdict. Every destination has extraordinary people, safe neighborhoods, and women who travel there every day without incident. We made these tiers because we want you informed, not afraid. Please use your own judgement, trust your instincts, and always research current conditions before you go.</p>
+  </div>
+ </div>
+ <div class="lb-filters">
+  <div class="lb-filters-inner">
+   <button class="lb-filter-btn active" id="lb-f-all" onclick="filterLookbook('all')">All Destinations</button>
+   <button class="lb-filter-btn" id="lb-f-green" onclick="filterLookbook('green')" style="color:#5A7A64;border-color:#5A7A64;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#5A7A64;margin-right:8px;vertical-align:middle;"></span>High Safety</button>
+   <button class="lb-filter-btn" id="lb-f-yellow" onclick="filterLookbook('yellow')" style="color:#B8923A;border-color:#B8923A;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#B8923A;margin-right:8px;vertical-align:middle;"></span>Heightened Awareness</button>
+   <button class="lb-filter-btn" id="lb-f-red" onclick="filterLookbook('red')" style="color:#8B3A3A;border-color:#8B3A3A;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#8B3A3A;margin-right:8px;vertical-align:middle;"></span>Experienced Travelers</button>
+  </div>
  </div>
  <div class="lookbook-grid" id="lookbookGrid"></div>
 </div>
@@ -2614,13 +2668,31 @@ const CONFIG = {
  FORMSPREE_ID: 'xjgennjq',
  FLIGHTS_URL: '/.netlify/functions/flights',
  HOTELS_URL: '/.netlify/functions/hotels',
+ CLEO_URL: '/.netlify/functions/cleo',
  GYG_PARTNER_ID: '72P0WK3',
  DEMO_MODE: true
 };
 
+// ── HTML SANITIZER — escapes all user/API content before innerHTML injection ──
+function sanitizeHTML(str) {
+ if (typeof str !== 'string') return '';
+ return str
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#x27;')
+  .replace(/\//g, '&#x2F;');
+}
+
+// ── EMAIL VALIDATOR — proper RFC pattern, not fragile includes('@') ──
+function isValidEmail(email) {
+ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 // GetYourGuide city IDs for affiliate links
 const GYG_CITIES = {
- 'miami': 'l176', 'bali': 'l353', 'paris': 'l16', 'dubai': 'l270',
+ 'miami': 'l176', 'bali': 'l353', 'paris': 'l16', 
  'cancun': 'l302', 'london': 'l15', 'rome': 'l33', 'barcelona': 'l45',
  'tokyo': 'l182', 'new york': 'l59', 'nashville': 'l946', 'cairo': 'l130',
  'santorini': 'l1079', 'istanbul': 'l173', 'lisbon': 'l496',
@@ -2631,11 +2703,13 @@ const GYG_CITIES = {
 
 function getGYGLink(destination, activity) {
  const city = (destination||'miami').toLowerCase().split(',')[0].trim();
- const cityId = GYG_CITIES[city] || 'l176';
- const actSlug = activity ? activity.toLowerCase().replace(/[^a-z0-9]+/g,'-') : '';
+ const allowedCities = Object.keys(GYG_CITIES);
+ const safeCityKey = allowedCities.includes(city) ? city : 'miami';
+ const cityId = GYG_CITIES[safeCityKey];
+ const actSlug = activity ? activity.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') : '';
  const base = actSlug
- ? "https://www.getyourguide.com/" + city + "-" + cityId + "/" + actSlug + "/"
- : "https://www.getyourguide.com/" + city + "-" + cityId + "/";
+  ? "https://www.getyourguide.com/" + safeCityKey + "-" + cityId + "/" + actSlug + "/"
+  : "https://www.getyourguide.com/" + safeCityKey + "-" + cityId + "/";
  return base + "?partner_id=" + CONFIG.GYG_PARTNER_ID + "&utm_medium=online_publisher&cmp=brem-top10";
 }
 
@@ -2643,7 +2717,7 @@ function getGYGLink(destination, activity) {
 const destinations = [
  "Bali, Indonesia","Bangkok, Thailand","Barcelona, Spain","Belize City, Belize",
  "Buenos Aires, Argentina","Cairo, Egypt","Cancún, Mexico","Cape Town, South Africa",
- "Cartagena, Colombia","Dubai, UAE","Florence, Italy","Havana, Cuba",
+ "Cartagena, Colombia","Florence, Italy","Havana, Cuba",
  "Ibiza, Spain","Istanbul, Turkey","Lisbon, Portugal","London, UK",
  "Los Angeles, CA","Marrakech, Morocco","Mexico City, Mexico","Miami, FL",
  "Milan, Italy","Nairobi, Kenya","Nashville, TN","New Orleans, LA",
@@ -2653,6 +2727,24 @@ const destinations = [
  "Santorini, Greece","Seoul, South Korea","Singapore","Sydney, Australia",
  "Tokyo, Japan","Toronto, Canada","Vienna, Austria","Zanzibar, Tanzania"
 ];
+
+// Airport codes mapped to their city destinations (for destination field)
+const destinationAirports = {
+ 'DXB':'Dubai, UAE','CDG':'Paris, France','LHR':'London, UK',
+ 'NRT':'Tokyo, Japan','HND':'Tokyo, Japan','JFK':'New York, NY',
+ 'LAX':'Los Angeles, CA','MIA':'Miami, FL','ORD':'Chicago, IL',
+ 'BNA':'Nashville, TN','ATL':'Atlanta, GA','SFO':'San Francisco, CA',
+ 'BCN':'Barcelona, Spain','FCO':'Rome, Italy','MXP':'Milan, Italy',
+ 'IST':'Istanbul, Turkey','SYD':'Sydney, Australia','GRU':'São Paulo, Brazil',
+ 'GIG':'Rio de Janeiro, Brazil','CPT':'Cape Town, South Africa','NBO':'Nairobi, Kenya',
+ 'RAK':'Marrakech, Morocco','LIS':'Lisbon, Portugal','VIE':'Vienna, Austria',
+ 'PRG':'Prague, Czech Republic','KEF':'Reykjavik, Iceland','SIN':'Singapore',
+ 'BKK':'Bangkok, Thailand','HKT':'Phuket, Thailand','DPS':'Bali, Indonesia',
+ 'CMN':'Casablanca, Morocco','HAV':'Havana, Cuba','SJU':'San Juan, PR',
+ 'EZE':'Buenos Aires, Argentina','BOG':'Bogotá, Colombia','CTG':'Cartagena, Colombia',
+ 'YYZ':'Toronto, Canada','SEL':'Seoul, South Korea','ICN':'Seoul, South Korea',
+ 'JNB':'Johannesburg, South Africa','CUN':'Cancún, Mexico','MEX':'Mexico City, Mexico'
+};
 
 const properties = [
  {id:1,name:"Ocean Drive Villa",loc:"Miami Beach · 0.2mi to beach",price:280,rating:"4.97",reviews:124,img:"🌊",beds:"3 bed · 2 bath",amenities:["Pool","Hot tub","Ocean view"],age:"21+",badge:"Top Pick",safety:88,aiMatch:96},
@@ -2664,22 +2756,20 @@ const properties = [
 ];
 
 const destinations_data = [
-  {name:"Miami",country:"Florida, USA",emoji:"🌴",vibes:["Beach","Nightlife","Girls Trip"],safety:84,price:"$280",gradient:"#1A5070,#0D3048",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Miami_collage_20101023.jpg/800px-Miami_collage_20101023.jpg"},
-  {name:"Bali",country:"Indonesia",emoji:"🌺",vibes:["Nature","Wellness","Solo"],safety:78,price:"$95",gradient:"#1A5028,#0D3418",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tegallalang_Rice_Terrace.jpg/800px-Tegallalang_Rice_Terrace.jpg"},
-  {name:"Paris",country:"France",emoji:"🗼",vibes:["Culture","Honeymoon","Girls Trip"],safety:82,price:"$220",gradient:"#302050,#180C30",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/500px-Tour_Eiffel_Wikimedia_Commons.jpg"},
-  {name:"Tulum",country:"Mexico",emoji:"🏖",vibes:["Beach","Wellness","Bachelorette"],safety:71,price:"$180",gradient:"#3A5028,#203018",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tulum_Ruins_on_the_Sea.jpg/800px-Tulum_Ruins_on_the_Sea.jpg"},
-  {name:"Santorini",country:"Greece",emoji:"🏛",vibes:["Beach","Honeymoon","Romance"],safety:91,price:"$310",gradient:"#182090,#0C1050",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Santorini_island%2C_Greece.jpg/800px-Santorini_island%2C_Greece.jpg"},
-  {name:"Tokyo",country:"Japan",emoji:"🏯",vibes:["Culture","City","Solo"],safety:96,price:"$175",gradient:"#802030,#4C1020",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/600px-Skyscrapers_of_Shinjuku_2009_January.jpg"},
-  {name:"Cape Town",country:"South Africa",emoji:"🌊",vibes:["Nature","Beach","Adventure"],safety:69,price:"$140",gradient:"#603018,#38180C",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Cape_Town_-_South_Africa.jpg/800px-Cape_Town_-_South_Africa.jpg"},
-  {name:"Dubai",country:"UAE",emoji:"🏙",vibes:["Luxury","Girls Trip","Nightlife"],safety:88,price:"$350",gradient:"#604818,#38280C",
-   photo:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dubai_Marina_Skyline.jpg/800px-Dubai_Marina_Skyline.jpg"},
+  {name:"Miami",country:"Florida, USA",vibes:["Beach","Nightlife","Bachelorette"],safety:84,price:"$280",gradient:"#1A5070,#0D3048",
+   photo:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"},
+  {name:"Nashville",country:"Tennessee, USA",vibes:["Bachelorette","Girls Trip","City"],safety:90,price:"$195",gradient:"#3A2818,#201408",
+   photo:"https://images.unsplash.com/photo-1545580130-a8e7c88d14f1?w=600&q=80"},
+  {name:"Cancun",country:"Mexico",vibes:["Beach","Bachelorette","Girls Trip"],safety:71,price:"$180",gradient:"#1A5028,#0D3018",
+   photo:"https://images.unsplash.com/photo-1552074284-5e84a0c3c321?w=600&q=80"},
+  {name:"Paris",country:"France",vibes:["Culture","Honeymoon","Girls Trip"],safety:74,price:"$220",gradient:"#302050,#180C30",
+   photo:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80"},
+  {name:"Bali",country:"Indonesia",vibes:["Nature","Wellness","Solo"],safety:72,price:"$95",gradient:"#1A5028,#0D3418",
+   photo:"https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80"},
+  {name:"Santorini",country:"Greece",vibes:["Beach","Honeymoon","Romance"],safety:91,price:"$310",gradient:"#182090,#0C1050",
+   photo:"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80"},
+  {name:"Cape Town",country:"South Africa",vibes:["Nature","Adventure","Girls Trip"],safety:69,price:"$140",gradient:"#603018,#38180C",
+   photo:"https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80"},
 ];
 
 const top10 = [
@@ -2701,11 +2791,13 @@ const airports_data = [
  {code:"PBI",name:"Palm Beach",time:"70 min",note:"Least crowded",ai:false},
 ];
 
-let guests = [
+// ── DEMO DATA ONLY — never populated with real user PII ──
+const DEMO_GUESTS = [
  {name:"Brianna M.",emoji:"👩🏾",info:"Passport · Exp 2028",dob:"Sept 12, 1998",status:"ok",statusText:"✓ All docs verified"},
  {name:"Rachel E.",emoji:"👩🏽",info:"Passport · Exp 2026",dob:"Mar 3, 2000",status:"warn",statusText:"⚠ Passport expires soon"},
  {name:"Emily T.",emoji:"🧑🏻",info:"Driver's License",dob:"Jun 22, 1997",status:"ok",statusText:"✓ All docs verified"},
 ];
+let guests = [...DEMO_GUESTS];
 
 // ── AI HINTS ──
 const aiHints = [
@@ -2726,16 +2818,40 @@ setInterval(()=>{
 function showAC(val){
  const drop = document.getElementById('acDrop');
  if(!val||val.length<2){drop.classList.remove('show');return;}
- const m = destinations.filter(d=>d.toLowerCase().includes(val.toLowerCase())).slice(0,7);
- if(!m.length){drop.classList.remove('show');return;}
- drop.innerHTML = m.map(d=>{
- const parts = d.split(',');
- return `<div class="ac-item" onmousedown="selectDest('${d.replace(/'/g,"\\'")}')">
+ const valUp = val.toUpperCase().trim();
+ const valLow = val.toLowerCase();
+
+ // Check if user typed an airport code (e.g. BNA, JFK)
+ let airportMatch = null;
+ if(val.length >= 2 && val.length <= 4 && destinationAirports[valUp]) {
+  const city = destinationAirports[valUp];
+  airportMatch = { code: valUp, city };
+ }
+
+ const cityMatches = destinations.filter(d=>d.toLowerCase().includes(valLow)).slice(0, airportMatch ? 5 : 7);
+
+ const allItems = [];
+ if(airportMatch) {
+  allItems.push(`<div class="ac-item" onmousedown="selectDest('${sanitizeHTML(airportMatch.city)}')">
+ <span class="ac-flag" style="font-size:13px;font-weight:700;color:var(--gold);font-family:monospace">${airportMatch.code}</span>
+ <span class="ac-name">${sanitizeHTML(airportMatch.city)}</span>
+ <span class="ac-country">Airport</span>
+ </div>`);
+ }
+ cityMatches.forEach(d=>{
+  const parts = d.split(',');
+  const safeD = sanitizeHTML(d);
+  const safeName = sanitizeHTML(parts[0]);
+  const safeCountry = sanitizeHTML(parts.slice(1).join(',').trim());
+  allItems.push(`<div class="ac-item" onmousedown="selectDest('${safeD}')">
  <span class="ac-flag">${getFlag(d)}</span>
- <span class="ac-name">${parts[0]}</span>
- <span class="ac-country">${parts.slice(1).join(',').trim()}</span>
- </div>`;
- }).join('');
+ <span class="ac-name">${safeName}</span>
+ <span class="ac-country">${safeCountry}</span>
+ </div>`);
+ });
+
+ if(!allItems.length){drop.classList.remove('show');return;}
+ drop.innerHTML = allItems.join('');
  drop.classList.add('show');
 }
 function hideAC(){document.getElementById('acDrop').classList.remove('show');}
@@ -2748,16 +2864,62 @@ const cities = [
  "Orlando, FL","Charlotte, NC","Nashville, TN","Austin, TX","Portland, OR",
  "London, UK","Paris, France","Toronto, Canada","Sydney, Australia","Tokyo, Japan"
 ];
+const fromCities = [
+  "New York, NY — JFK · John F. Kennedy International",
+  "New York, NY — LGA · LaGuardia Airport",
+  "New York, NY — EWR · Newark Liberty International",
+  "Los Angeles, CA — LAX · Los Angeles International",
+  "Chicago, IL — ORD · O'Hare International",
+  "Chicago, IL — MDW · Midway International",
+  "Miami, FL — MIA · Miami International",
+  "Dallas, TX — DFW · Dallas/Fort Worth International",
+  "San Francisco, CA — SFO · San Francisco International",
+  "Atlanta, GA — ATL · Hartsfield-Jackson Atlanta",
+  "Seattle, WA — SEA · Seattle-Tacoma International",
+  "Boston, MA — BOS · Logan International",
+  "Washington, DC — IAD · Dulles International",
+  "Washington, DC — DCA · Reagan National",
+  "Denver, CO — DEN · Denver International",
+  "Nashville, TN — BNA · Nashville International",
+  "Phoenix, AZ — PHX · Phoenix Sky Harbor",
+  "Houston, TX — IAH · George Bush Intercontinental",
+  "Orlando, FL — MCO · Orlando International",
+  "Las Vegas, NV — LAS · Harry Reid International",
+  "Minneapolis, MN — MSP · Minneapolis-Saint Paul",
+  "Detroit, MI — DTW · Detroit Metropolitan",
+  "Philadelphia, PA — PHL · Philadelphia International",
+  "Portland, OR — PDX · Portland International",
+  "Charlotte, NC — CLT · Charlotte Douglas International",
+  "London, UK — LHR · Heathrow Airport",
+  "London, UK — LGW · Gatwick Airport",
+  "Paris, France — CDG · Charles de Gaulle",
+  "Toronto, Canada — YYZ · Pearson International",
+  "Vancouver, Canada — YVR · Vancouver International",
+];
+
 function showACFrom(val){
  const drop = document.getElementById('acDropFrom');
  if(!val||val.length<2){drop.classList.remove('show');return;}
- const m = cities.filter(d=>d.toLowerCase().includes(val.toLowerCase())).slice(0,6);
+ const valLow = val.toLowerCase();
+ const m = fromCities.filter(d=>d.toLowerCase().includes(valLow)).slice(0,7);
  if(!m.length){drop.classList.remove('show');return;}
- drop.innerHTML = m.map(d=>`<div class="ac-item" onmousedown="selectFrom('${d}')">
- <span class="ac-flag">✈</span>
- <span class="ac-name">${d.split(',')[0]}</span>
- <span class="ac-country">${d.split(',').slice(1).join(',').trim()}</span>
- </div>`).join('');
+ drop.innerHTML = m.map(d=>{
+  const parts = d.split(' — ');
+  const city = parts[0];
+  const airport = parts[1] || '';
+  // Extract airport code for display (e.g. "BNA · Nashville International" → "BNA")
+  const codeMatch = airport.match(/^([A-Z]{3})/);
+  const safeCity = sanitizeHTML(city);
+  const safeAirport = sanitizeHTML(airport);
+  const safeD = sanitizeHTML(d);
+  return `<div class="ac-item" onmousedown="selectFrom('${safeD}')">
+ <span class="ac-flag" style="${codeMatch?'font-size:13px;font-weight:700;color:var(--gold);font-family:monospace':'font-size:18px'}">
+  ${codeMatch ? codeMatch[1] : '✈'}
+ </span>
+ <span class="ac-name">${safeCity}</span>
+ <span class="ac-country">${safeAirport}</span>
+ </div>`;
+ }).join('');
  drop.classList.add('show');
 }
 function hideACFrom(){document.getElementById('acDropFrom').classList.remove('show');}
@@ -2792,7 +2954,7 @@ function getFlag(dest){
  return '🌍';
 }
 function updateSafetyBanner(dest){
- const scores={'Miami':84,'Paris':82,'Bali':78,'Tokyo':96,'Dubai':88,'London':86,'Cairo':71,'Nashville':90,'Santorini':91,'Cape Town':69};
+ const scores={'Miami':84,'Paris':82,'Bali':78,'Tokyo':96,'London':86,'Cairo':71,'Nashville':90,'Santorini':91,'Cape Town':69};
  const city = dest.split(',')[0];
  const s = scores[city]||75;
  const n = document.getElementById('safetyNum');
@@ -2859,6 +3021,8 @@ async function doDiscover(){
  const checkout = document.getElementById('checkOut').value;
  const guests = guestCount || 2;
  if(!to.trim()){showToast('Where are you headed?');return;}
+ const validDest = destinations.some(d=>d.toLowerCase().includes(to.toLowerCase().split(',')[0].trim()));
+ if(!validDest){showToast('Please select a destination from the list ✦');document.getElementById('searchTo').focus();return;}
  const btn = document.getElementById('searchBtn');
  btn.innerHTML = '<div class="spinner"></div>';
  btn.disabled = true;
@@ -2965,10 +3129,9 @@ function renderDiscover(){
  const grid = document.getElementById('destGrid');
  if(!grid||grid.children.length) return;
  grid.innerHTML = destinations_data.map(d=>`
-    <div class="dest-card" onclick="showToast('Exploring ${d.name} ✦')">
+    <div class="dest-card" data-vibes="${d.vibes.join(',')}" onclick="showToast('Exploring ${d.name} ✦')">
       <div class="dest-img" style="background:${d.photo ? 'url('+d.photo+') center/cover no-repeat' : 'linear-gradient(145deg,'+d.gradient+')'}">
-        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,13,11,.1),rgba(15,13,11,.4));z-index:1;"></div>
-        <span style="position:relative;z-index:2;">${d.emoji}</span>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,13,11,.15),rgba(15,13,11,.5));z-index:1;"></div>
         <div class="dest-safety-badge"><div class="dsb-score">${d.safety}</div><div class="dsb-label">Safety</div></div>
       </div>
       <div class="dest-body">
@@ -3063,6 +3226,7 @@ function showPage(page){
  if(typeof gtag!=='undefined') gtag('event','page_view',{page_title:page,page_location:window.location.href+'#'+page});
  if(page==='explore') renderDiscover();
  if(page==='lookbook') renderLookbook();
+ if(page==='home') renderSafetyCarousel();
 }
 
 // ── INTERACTIONS ──
@@ -3094,6 +3258,15 @@ function activateSort(el){
 function setVibe(el){
  document.querySelectorAll('.vibe-btn').forEach(b=>b.classList.remove('active'));
  el.classList.add('active');
+ const vibe = el.textContent.trim();
+ document.querySelectorAll('.dest-card').forEach(card=>{
+  if(vibe==='All'){
+   card.style.display='';
+  } else {
+   const vibes = card.dataset.vibes || '';
+   card.style.display = vibes.includes(vibe) ? '' : 'none';
+  }
+ });
 }
 function toggleSave(btn){
  const saved = btn.textContent === '♡';
@@ -3147,7 +3320,7 @@ function openPayment(){document.getElementById('paymentModal').classList.add('sh
 function closePayment(){document.getElementById('paymentModal').classList.remove('show');}
 function joinFromPayment(){
  const email = document.getElementById('paymentEmail').value;
- if(!email||!email.includes('@')){showToast('Enter a valid email');return;}
+ if(!email||!isValidEmail(email)){showToast('Enter a valid email');return;}
  submitEmail(email);
  closePayment();
  showPage('confirm');
@@ -3157,7 +3330,7 @@ function joinFromPayment(){
 // ── WAITLIST ──
 function joinWaitlist(){
  const email = document.getElementById('waitlistEmail').value;
- if(!email||!email.includes('@')){showToast('Enter a valid email');return;}
+ if(!email||!isValidEmail(email)){showToast('Enter a valid email');return;}
  submitEmail(email);
  showToast("You are on the list ✦");
  document.getElementById('waitlistEmail').value = '';
@@ -3167,7 +3340,7 @@ async function submitEmail(email){
  try{
  await fetch("https://formspree.io/f/" + CONFIG.FORMSPREE_ID,{
  method:'POST',headers:{'Content-Type':'application/json'},
- body:JSON.stringify({email,source:'gobrem-waitlist',page:window.location.href})
+ body:JSON.stringify({email,source:'gobrem-waitlist',page:window.location.href,_gotcha:''})
  });
  }catch(e){console.log('Captured:',email);}
 }
@@ -3195,38 +3368,24 @@ function toggleChat(){
 const chatHistory = [];
 
 async function callCleo(userMsg) {
+ // destination + tripMode sent as context only — system prompt is built server-side
  const destination = document.getElementById('searchTo')?.value || 'your destination';
  const journeyMode = document.querySelector('.journey-mode.active')?.textContent || 'The Grand Tour';
 
  chatHistory.push({ role: 'user', content: userMsg });
-  if(chatHistory.length > 20) chatHistory.splice(0, 2);
-
- const systemPrompt = `You are Cleo — the travel assistant for BREM, the first travel platform built specifically for women. You help women plan safer, smarter journeys.
-
-Current context:
-- Destination: ${destination}
-- Trip type: ${journeyMode}
-- Platform: gobrem.com
-
-Your personality: warm, confident, knowledgeable, safety-conscious. You speak like a well-traveled friend, not a corporate assistant. Use ✦ occasionally as BREM's signature mark.
-
-You specialize in: women's travel safety, curated escapes, grand tours, private journeys, group coordination, destination insights, packing, and evening culture recommendations.
-
-Keep responses concise — 2-4 sentences max unless asked for a full itinerary. Never mention you're built on Claude or Anthropic. Your name is Cleo. You are BREM's travel expert.`;
+ if(chatHistory.length > 20) chatHistory.splice(0, 2);
 
  try {
- const res = await fetch('https://api.anthropic.com/v1/messages', {
+ const res = await fetch(CONFIG.CLEO_URL, {
  method: 'POST',
  headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({
- model: 'claude-sonnet-4-20250514',
- max_tokens: 1000,
- system: systemPrompt,
+ context: { destination, journeyMode },
  messages: chatHistory
  })
  });
  const data = await res.json();
- const reply = data.content?.[0]?.text || "I'm having a moment — try asking me again ✦";
+ const reply = data.reply || "I'm having a moment — try asking me again ✦";
  chatHistory.push({ role: 'assistant', content: reply });
  return reply;
  } catch(e) {
@@ -3239,14 +3398,16 @@ async function sendAI(msg){
  if(!chatOpen) toggleChat();
  const msgs = document.getElementById('aiMessages');
  if(!msgs) return;
- msgs.innerHTML += `<div class="ai-msg user"><div class="am-avatar user">👩🏾</div><div class="am-bubble user">${msg}</div></div>`;
+ const safeMsg = sanitizeHTML(msg);
+ msgs.innerHTML += `<div class="ai-msg user"><div class="am-avatar user">👩🏾</div><div class="am-bubble user">${safeMsg}</div></div>`;
  const tid = 'typing-' + Date.now();
  msgs.innerHTML += `<div class="ai-msg" id="${tid}"><div class="am-avatar brem">✦</div><div class="ai-typing"><div class="at-dot"></div><div class="at-dot"></div><div class="at-dot"></div></div></div>`;
  msgs.scrollTop = msgs.scrollHeight;
  const reply = await callCleo(msg);
  const t = document.getElementById(tid);
  if(t) t.remove();
- msgs.innerHTML += `<div class="ai-msg"><div class="am-avatar brem">✦</div><div class="am-bubble brem">${reply}</div></div>`;
+ const safeReply = sanitizeHTML(reply);
+ msgs.innerHTML += `<div class="ai-msg"><div class="am-avatar brem">✦</div><div class="am-bubble brem">${safeReply}</div></div>`;
  msgs.scrollTop = msgs.scrollHeight;
 }
 
@@ -3258,32 +3419,83 @@ function sendAIInput(){
  sendAI(msg);
 }
 
+// ── SAFETY CAROUSEL ──
+const safetyCities = [
+  {city:'Nashville', country:'Tennessee, USA', score:90, desc:'The bachelorette capital of America. Broadway is safe. Go to Safe-Bar certified venues and stay alert on peak weekends.', bars:{Night:88, Harassment:85, Solo:82, Legal:95}},
+  {city:'Paris', country:'France', score:82, desc:'Pickpocketing is the main risk, not violence. Post-Olympics security elevated. Stay in the 6th arrondissement. Carry a crossbody.', bars:{Night:78, Harassment:75, Solo:80, Legal:90}},
+  {city:'Miami', country:'Florida, USA', score:84, desc:'Art Deco, Wynwood walls, cafecito at $1.50. Drink spiking documented during peak weeks — stay alert and stick to trusted venues.', bars:{Night:82, Harassment:80, Solo:83, Legal:92}},
+  {city:'Bali', country:'Indonesia', score:78, desc:'Use Grab, not street taxis. 50,000 women in Bali have your back. The island is welcoming and well-travelled by solo women.', bars:{Night:72, Harassment:76, Solo:80, Legal:70}},
+  {city:'Cancún', country:'Mexico', score:71, desc:'Resort zones are heavily secured. Venture with intention, travel in groups after dark, and stay within known areas.', bars:{Night:68, Harassment:70, Solo:65, Legal:75}},
+  {city:'Santorini', country:'Greece', score:91, desc:'Violent crime is almost nonexistent. Caldera views, volcanic wine, and a bucket-list destination that is genuinely safe.', bars:{Night:90, Harassment:88, Solo:92, Legal:93}},
+  {city:'Cape Town', country:'South Africa', score:69, desc:'Table Mountain. Winelands. Ocean views. Stay in the Atlantic Seaboard and City Bowl. Travel in groups after dark.', bars:{Night:62, Harassment:65, Solo:68, Legal:78}},
+];
+let safetyIdx = 0;
+let safetyTimer;
+function renderSafetyCarousel(){
+  const c = document.getElementById('safetyCarousel');
+  const d = document.getElementById('safetyDots');
+  if(!c||!d) return;
+  c.innerHTML = safetyCities.map((s,i)=>`
+    <div class="safety-slide${i===0?' active':''}" id="ss-${i}">
+      <div class="sc-score-block">
+        <div class="sc-num">${s.score}</div>
+        <div class="sc-denom">/ 100</div>
+        <div class="sc-label">Safety Score™</div>
+      </div>
+      <div class="sc-right">
+        <div class="sc-city">${s.city}</div>
+        <div class="sc-country">${s.country}</div>
+        <div class="sc-desc">${s.desc}</div>
+        <div class="sc-bars">
+          ${Object.entries(s.bars).map(([k,v])=>`
+          <div class="sc-bar-row">
+            <span class="sc-bar-name">${k}</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="width:${v}%"></div></div>
+            <span class="sc-bar-val">${v}</span>
+          </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+  d.innerHTML = safetyCities.map((_,i)=>`<div class="sdot${i===0?' active':''}" onclick="goSafety(${i})"></div>`).join('');
+  safetyTimer = setInterval(()=>goSafety((safetyIdx+1)%safetyCities.length), 5000);
+}
+function goSafety(idx){
+  document.querySelectorAll('.safety-slide').forEach((s,i)=>s.classList.toggle('active',i===idx));
+  document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  safetyIdx = idx;
+}
+
 // ── LOOKBOOK ──
 const lookbookGuides = [
-  {city:'Miami', subtitle:'The Bachelorette Capital of the South', emoji:'🌴', safety:84, gradient:'#1A5070,#0D3048',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Miami_collage_20101023.jpg/800px-Miami_collage_20101023.jpg',
-   tags:['Bachelorette','Girls Trip','Nightlife'], desc:'Sun, evening culture, and the kind of energy that belongs in a group chat at 2am.'},
-  {city:'Nashville', subtitle:'The Bachelorette Capital of America', emoji:'🎸', safety:90, gradient:'#3A2818,#201408',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Nashville_Skyline_Dusk_Bradley_Campbell.jpg/800px-Nashville_Skyline_Dusk_Bradley_Campbell.jpg',
-   tags:['Bachelorette','Girls Trip','Live Music'], desc:'Broadway. Honky-tonks. Pedal taverns. The undisputed capital of the bachelorette.'},
-  {city:'Cancún & Tulum', subtitle:'All-Inclusive Luxury Meets Jungle Chic', emoji:'🏖', safety:71, gradient:'#1A5028,#0D3018',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Cancun_zona_hotelera.jpg/800px-Cancun_zona_hotelera.jpg',
-   tags:['Bachelorette','Girls Trip','Beach'], desc:'Cancún for the pool parties. Tulum for the vibes. Two destinations, one trip.'},
-  {city:'Paris', subtitle:'The Honeymoon. The Girls Trip. The Escape.', emoji:'🗼', safety:82, gradient:'#302050,#180C30',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/500px-Tour_Eiffel_Wikimedia_Commons.jpg',
-   tags:['Honeymoon','Girls Trip','Romance'], desc:'Every trip to Paris is a different Paris. Here is the one built for women.'},
-  {city:'Bali', subtitle:'The Spiritual Girls Getaway', emoji:'🌺', safety:78, gradient:'#1A5028,#0D3418',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tegallalang_Rice_Terrace.jpg/800px-Tegallalang_Rice_Terrace.jpg',
-   tags:['Solo','Girls Trip','Wellness'], desc:'Temples at sunrise. Rice terraces at noon. Infinity pools at sunset. Repeat.'},
-  {city:'Dubai', subtitle:'Luxury Redefined. Safety Score 88.', emoji:'🏙', safety:88, gradient:'#604818,#38280C',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dubai_Marina_Skyline.jpg/800px-Dubai_Marina_Skyline.jpg',
-   tags:['Girls Trip','Honeymoon','Luxury'], desc:'Sky-high brunches, desert sunsets, and the most Instagrammable skyline on earth.'},
-  {city:'Santorini', subtitle:'The Honeymoon That Dreams Are Made Of', emoji:'🏛', safety:91, gradient:'#182090,#0C1050',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Santorini_island%2C_Greece.jpg/800px-Santorini_island%2C_Greece.jpg',
-   tags:['Honeymoon','Girls Trip','Beach'], desc:'White domes, caldera views, and wine at sunset. Safety score 91. You deserve this.'},
-  {city:'Cape Town', subtitle:'Adventure Meets Elegance', emoji:'🌊', safety:69, gradient:'#603018,#38180C',
-   photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Cape_Town_-_South_Africa.jpg/800px-Cape_Town_-_South_Africa.jpg',
-   tags:['Solo','Girls Trip','Nature'], desc:'Table Mountain. Winelands. Ocean views. The most dramatic backdrop on the continent.'},
+  {city:'Miami', country:'Florida, USA', subtitle:'The Bachelorette Capital of the South', safety:84, tier:'yellow', tierLabel:'🟡 Heightened Awareness', tierColor:'#B8923A', gradient:'#1A5070,#0D3048',
+   photo:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+   tags:['Bachelorette','Girls Trip','Nightlife'], desc:'Sun, art deco, and the kind of energy that belongs in a group chat at 2am. Drink spiking documented during peak weeks — stay at Safe-Bar certified venues.',
+   gygLink:'https://www.getyourguide.com/miami-l176/miami-biscayne-bay-millionaire-s-homes-sightseeing-cruise-t643959/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMMiamiLookbook'},
+  {city:'Nashville', country:'Tennessee, USA', subtitle:'The Bachelorette Capital of America', safety:90, tier:'green', tierLabel:'🟢 High Safety', tierColor:'#5A7A64', gradient:'#3A2818,#201408',
+   photo:'https://images.unsplash.com/photo-1545580130-a8e7c88d14f1?w=600&q=80',
+   tags:['Bachelorette','Girls Trip','Live Music'], desc:'Broadway. Honky-tonks. Hot chicken. The undisputed capital of the bachelorette. Go to Safe-Bar certified venues.',
+   gygLink:'https://www.getyourguide.com/s?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMNashvilleLookbook&et=412283&lc=1279'},
+  {city:'Cancún & Tulum', country:'Mexico', subtitle:'All-Inclusive Luxury Meets Jungle Chic', safety:71, tier:'yellow', tierLabel:'🟡 Heightened Awareness', tierColor:'#B8923A', gradient:'#1A5028,#0D3018',
+   photo:'https://images.unsplash.com/photo-1552074284-5e84a0c3c321?w=600&q=80',
+   tags:['Bachelorette','Girls Trip','Beach'], desc:'Cancún for the pool parties. Tulum for the vibes. Resort zones are heavily secured — venture with intention.',
+   gygLink:'https://www.getyourguide.com/cancun-l150/chichen-itza-plus-tour-with-cenote-and-lunch-t97542/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMCancunLookbook'},
+  {city:'Paris', country:'France', subtitle:'The Honeymoon. The Girls Trip. The Escape.', safety:74, tier:'yellow', tierLabel:'🟡 Heightened Awareness', tierColor:'#B8923A', gradient:'#302050,#180C30',
+   photo:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80',
+   tags:['Honeymoon','Girls Trip','Romance'], desc:'Every trip to Paris is a different Paris. Here is the one built for women. Pickpocketing is the main risk — wear a crossbody.',
+   gygLink:'https://www.getyourguide.com/paris-l16/from-paris-versailles-palace-guided-tour-gardens-access-t407616/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMParisLookbook'},
+  {city:'Bali', country:'Indonesia', subtitle:'The Spiritual Girls Getaway', safety:72, tier:'yellow', tierLabel:'🟡 Heightened Awareness', tierColor:'#B8923A', gradient:'#1A5028,#0D3418',
+   photo:'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80',
+   tags:['Solo','Girls Trip','Wellness'], desc:'Temples at sunrise. Rice terraces at noon. Infinity pools at sunset. Use Grab, not taxis. 50,000 women in Bali have your back.',
+   gygLink:'https://www.getyourguide.com/batoemadeg-l189824/from-bali-snorkeling-3-spots-with-gopro-west-penida-tour-t903338/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMBaliLookbook'},
+  {city:'Santorini', country:'Greece', subtitle:'The Honeymoon That Dreams Are Made Of', safety:91, tier:'green', tierLabel:'🟢 High Safety', tierColor:'#5A7A64', gradient:'#182090,#0C1050',
+   photo:'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80',
+   tags:['Honeymoon','Girls Trip','Beach'], desc:'White domes, caldera views, and wine at sunset. Violent crime almost nonexistent. Safety score 91. You deserve this.',
+   gygLink:'https://www.getyourguide.com/santorini-l753/sun-set-sailing-tour-in-santorini-t33375/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMSantoriniLookbook'},
+  {city:'Cape Town', country:'South Africa', subtitle:'Adventure Meets Elegance', safety:69, tier:'red', tierLabel:'🔴 Experienced Travelers', tierColor:'#8B3A3A', gradient:'#603018,#38180C',
+   photo:'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80',
+   tags:['Solo','Girls Trip','Nature'], desc:'Table Mountain. Winelands. Ocean views. The most dramatic backdrop on the continent. Stay in the Atlantic Seaboard. Travel in groups after dark.',
+   gygLink:'https://www.getyourguide.com/cape-town-l103/48-hour-hop-on-hop-off-tour-cape-town-t4325/?partner_id=72P0WK3&utm_medium=online_publisher&cmp=BREMCapeTownLookbook'},
 ];
 
 let currentGuide = null;
@@ -3292,25 +3504,52 @@ function renderLookbook(){
  const grid = document.getElementById('lookbookGrid');
  if(!grid||grid.children.length) return;
  grid.innerHTML = lookbookGuides.map(g=>`
-    <div class="lookbook-card" id="lb-${g.city.toLowerCase().replace(/[^a-z]/g,'')}">
+    <div class="lookbook-card" data-tier="${g.tier}" id="lb-${g.city.toLowerCase().replace(/[^a-z]/g,'')}">
       <div class="lc-cover" style="background:${g.photo ? 'url('+g.photo+') center/cover no-repeat' : 'linear-gradient(145deg,'+g.gradient+')'}">
         <div class="lc-cover-overlay"></div>
-        <span class="lc-emoji-fallback">${g.emoji}</span>
-        <span class="lc-badge">✦ BREM Guide</span>
+        <span class="lc-badge" style="color:${g.tierColor};border-color:${g.tierColor}40;">${g.tierLabel}</span>
         <div class="lc-safety">
-          <div class="cs-score">${g.safety}</div>
+          <div class="cs-score" style="color:${g.tierColor}">${g.safety}</div>
           <div class="cs-label">Safety</div>
         </div>
       </div>
       <div class="lc-body">
         <div class="lc-title">${g.city}</div>
+        <div style="font-size:10px;color:var(--dust);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;font-weight:400;">${g.country}</div>
         <div class="lc-subtitle">${g.subtitle}</div>
         <div class="lc-desc">${g.desc}</div>
         <div class="lc-tags">${g.tags.map(t=>'<span class="lc-tag">'+t+'</span>').join('')}</div>
         <button class="lc-cta" onclick="openGuideModal('${g.city}')">Download Free Guide ✦</button>
+        ${g.gygLink ? '<a class="lc-gyg-btn" href="'+g.gygLink+'" target="_blank" rel="noopener noreferrer">Explore Experiences ✦</a>' : ''}
       </div>
     </div>
-  `).join('');
+  `).join('') + `
+    <div class="lookbook-card" style="background:var(--noir);border:1px solid rgba(255,255,255,.08);">
+      <div class="lc-cover" style="background:linear-gradient(145deg,#1a1a1a,#0a0a0a);display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;padding:32px;">
+          <div style="font-size:32px;margin-bottom:12px;color:var(--gold2);">✦</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:white;font-weight:300;letter-spacing:1px;">Have better data?</div>
+        </div>
+      </div>
+      <div class="lc-body">
+        <div class="lc-title" style="color:white;">Contribute</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Help us improve</div>
+        <div class="lc-subtitle" style="color:var(--gold2);">Share what you know.</div>
+        <div class="lc-desc" style="color:rgba(255,255,255,.5);">Traveled recently? Have a correction, a tip, or a local insight? Our safety scores improve with real women's data.</div>
+        <button class="lc-cta" style="background:transparent;border:1px solid rgba(255,255,255,.2);color:white;" onclick="document.getElementById('contributeModal').classList.add('show')">Share Your Experience ✦</button>
+      </div>
+    </div>
+  `;
+}
+
+function filterLookbook(tier){
+ document.querySelectorAll('#lookbookGrid .lookbook-card').forEach(card=>{
+  card.style.display = (tier==='all'||card.dataset.tier===tier) ? '' : 'none';
+ });
+ ['all','green','yellow','red'].forEach(t=>{
+  const btn = document.getElementById('lb-f-'+t);
+  if(btn){ btn.classList.toggle('active', t===tier); }
+ });
 }
 
 function openGuideModal(city){
@@ -3325,7 +3564,7 @@ function closeGuideModal(){
 async function downloadGuide(){
  const email = document.getElementById('guideEmail').value;
  const phone = document.getElementById('guidePhone').value || '';
- if(!email||!email.includes('@')){showToast('Enter a valid email');return;}
+ if(!email||!isValidEmail(email)){showToast('Enter a valid email');return;}
 
  const city = currentGuide;
 
@@ -3412,11 +3651,12 @@ function showToast(msg){
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer style="background:var(--noir);padding:48px 56px 32px;margin-top:0;">
  <div style="max-width:1200px;margin:0 auto;">
- <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;">
- <div>
+ <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;">
+ <div class="footer-brand">
  <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;letter-spacing:4px;margin-bottom:8px;">BREM ✦</div>
- <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:16px;">Travel for the Girls</div>
- <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.8;font-weight:300;max-width:280px;">The first travel platform built specifically for women. Safety scores, group coordination, curated guides.</p>
+ <div style="font-size:11px;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:4px;">Travel, Elevated.</div>
+ <div style="font-size:11px;color:rgba(255,255,255,.2);font-weight:300;font-style:italic;margin-bottom:16px;">Breathe. Relax. Enjoy. Move.</div>
+ <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.8;font-weight:300;max-width:280px;">The first travel platform built specifically for women. Safety scores, curated destinations, and guides built for how you actually travel.</p>
  </div>
  <div>
  <div style="font-size:10px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin-bottom:16px;">Discover</div>
@@ -3424,7 +3664,7 @@ function showToast(msg){
  <span onclick="showPage('home')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;transition:color .2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Home</span>
  <span onclick="showPage('explore')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Destinations</span>
  <span onclick="showPage('lookbook')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">The Lookbook</span>
- <span onclick="showPage('dashboard')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Your Atelier</span>
+ 
  </div>
  </div>
  <div>
@@ -3432,7 +3672,16 @@ function showToast(msg){
  <div style="display:flex;flex-direction:column;gap:10px;">
  <span onclick="showPage('about')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">About</span>
  <span onclick="showPage('contact')" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Contact</span>
- <a href="https://instagram.com/travelwithbrem" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Instagram</a>
+ <a href="https://substack.com/@gobrem" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">BREM Journal</a>
+ </div>
+ </div>
+ <div>
+ <div style="font-size:10px;letter-spacing:3px;color:var(--gold2);text-transform:uppercase;margin-bottom:16px;">Follow</div>
+ <div style="display:flex;flex-direction:column;gap:10px;">
+ <a href="https://www.instagram.com/travelwithbrem" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Instagram</a>
+ <a href="https://www.tiktok.com/@travelwithbrem" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">TikTok</a>
+ <a href="https://www.pinterest.com/hellobrem/" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Pinterest</a>
+ <a href="https://substack.com/@gobrem" target="_blank" style="font-size:13px;color:rgba(255,255,255,.5);cursor:pointer;font-weight:300;text-decoration:none;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Substack</a>
  </div>
  </div>
  <div>
