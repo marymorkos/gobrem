@@ -1,0 +1,22 @@
+/*
+  # Content Security Policy
+  # Blocks script injection and data exfiltration even if XSS occurs.
+  # Running in Report-Only for one week — change header name to
+  # Content-Security-Policy once you confirm no violations in browser console.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://region1.google-analytics.com; img-src 'self' https://images.unsplash.com data: blob:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;
+
+  # Clickjacking protection
+  X-Frame-Options: DENY
+
+  # MIME type sniffing protection
+  X-Content-Type-Options: nosniff
+
+  # Don't leak gobrem.com paths to third-party sites
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disable unused browser APIs
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# HTML files — always serve fresh, never cache stale security headers
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
